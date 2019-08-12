@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List City</title>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+</head>
+<body>
+<div id="wrapper">
+<h1>List City</h1>
+<p>
+    <a th:href="@{/create-city}">Create new city</a>
+</p>
+    <hr>
+<br>
+
+<br>
+<table id="list-city">
+    <tr>
+        <th>ID</th>
+        <th>City</th>
+        <th>Country</th>
+        <th></th>
+    </tr>
+    <th:block th:each="citys :${city}">
+        <tr>
+            <td th:text="${citys.id}"></td>
+            <td><a th:href="@{/view-city/__${citys.id}__}" th:text="${citys.name}"></a></td>
+            <td th:text="${citys.country.name}"></td>
+            <td>
+                <a th:href="@{/edit-city/__${citys.id}__}">Edit</a>
+                <a th:href="@{/delete-city/__${citys.id}__}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<div id="page">
+    <a th:href="@{'/city'(page=${city.number - 1})}" th:if="${city.hasPrevious()}">Previous</a>
+    <span th:text="${city.number + 1}"></span>/<span th:text="${city.totalPages}"></span>
+    <a th:href="@{'/city'(page=${city.number + 1})}" th:if="${city.hasNext()}">Next</a>
+</div>
+</div>
+</body>
+</html>

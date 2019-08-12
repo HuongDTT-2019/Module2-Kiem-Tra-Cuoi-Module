@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail City</title>
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
+</head>
+<body>
+<div id="wrapper">
+    <h1>Detail City</h1>
+    <p>
+        <a th:href="@{/}">Back to list city</a>
+    </p>
+    <hr>
+    <form th:action="@{/view-city}" th:object="${city}">
+        <h2><span th:text="*{name}"></span> City</h2>
+        <label>Name:</label>
+        <p th:text="*{name}"></p>
+        <label>Country:</label>
+        <p th:text="*{country.name}"></p>
+        <label>Area:</label>
+        <p th:text="*{area}"></p>
+        <label>Population:</label>
+        <p th:text="*{population}"></p>
+        <label>GPA:</label>
+        <p th:text="*{GDP}"></p>
+        <label>Description:</label>
+        <textarea th:text="*{description}"></textarea>
+        <button><a th:href="@{/edit-city/__${city.id}__}">Edit</a></button>
+        <button><a th:href="@{/delete-city/__${city.id}__}">Delete</a></button>
+    </form>
+</div>
+</body>
+</html>
